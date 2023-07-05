@@ -1,9 +1,10 @@
-<script></script>
+<script>
+export default {
 
-<template>
-  <h1 class="text-danger">ciaoooo</h1>
-  <font-awesome-icon :icon="['fas', 'star']" />
-</template>
+}
+</script>
+
+<template></template>
 
 <style lang="scss">
 @use './assets/scss/style.scss'
