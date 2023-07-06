@@ -2,31 +2,23 @@
 export default {
     props: {
         placeholder: String,
+        submitLabel: String,
     },
     data() {
         return {
             searchTerm: '',
         }
     },
-    methods: {
-        submitForm() {
-            this.$emit('form-submit', this.searchTerm)
-        },
-        resetForm() {
-            this.searchTerm = '';
-            this.submitform();
-        }
-    },
-    emits: ['form-submit'],
+    emits: ['term-change', 'form-submit'],
 };
 </script>
 
 <template>
     <div class="container">
-        <form class="d-flex" @submit.prevent="submitForm">
-            <input type="text" :placeholder="placeholder || 'Cerca...'" class="form-control mx-5" v-model.trim="searchTerm">
-            <button class="btn btn-success">Cerca</button>
-            <button class="btn btn-warning ms-3" @click="resetForm">Annulla</button>
+        <form class="d-flex" @submit.prevent="$emit('form-submit')">
+            <input @keyup="$emit('term-change', searchTerm)" type="text" :placeholder="placeholder || 'Cerca...'"
+                class="form-control mx-5" v-model.trim="searchTerm">
+            <button class="btn btn-success">{{ submitLabel || 'Cerca..' }}</button>
         </form>
     </div>
 </template>
