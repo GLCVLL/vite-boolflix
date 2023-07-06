@@ -1,10 +1,11 @@
 <script>
 import axios from 'axios';
+import BaseCard from './BaseCard.vue';
 import { api } from '../data';
 import { store } from '../data/store';
-import searchForm from './SearchForm.vue';
+import SearchForm from './SearchForm.vue';
 export default {
-    components: { searchForm },
+    components: { SearchForm, BaseCard },
     data() {
         return {
             store,
@@ -49,8 +50,14 @@ export default {
 
 <template>
     <header>
-        <searchForm @term-change="setTitleFilter" @form-submit="searchProd" />
+        <SearchForm @term-change="setTitleFilter" @form-submit="searchProd" />
     </header>
+    <main>
+        <h1>Movies</h1>
+        <BaseCard v-for="movie in store.movies" :key="movie.id" :item="movie" />
+        <h1>Series</h1>
+        <BaseCard v-for="serie in store.series" :key="serie.id" :item="serie" />
+    </main>
 </template>
 
 <style scoped lang="scss">
