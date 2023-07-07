@@ -18,11 +18,10 @@ export default {
         },
         flagSrc() {
             const url = new URL(`../assets/img/${this.item.original_language}.png`, import.meta.url);
-            console.log(url, this.item.original_language);
             return url.href;
         },
         posterPath() {
-            if (!this.item.poster_path) return null;
+            if (!this.item.poster_path) return pic.placeHolder;
             return pic.baseUrl + this.item.poster_path;
         },
         vote() {
@@ -39,8 +38,10 @@ export default {
 </script>
 
 <template>
-    <div class="card-container">
-        <img class="img-fluid" :src="posterPath" :alt="title">
+    <div class="my-card-container">
+        <div class="card-image">
+            <img class="img-fluid" :src="posterPath" :alt="title">
+        </div>
         <div class="card-info">
             <ul>
                 <li>{{ title }}</li>
@@ -50,7 +51,7 @@ export default {
                 </li>
                 <li>{{ item.vote_average }}</li>
                 <li>
-                    <img class="img-fluid" v-if="hasFlag" :src="flagSrc" :alt="item.original_language">
+                    <img class="img-fluid nation-img" v-if="hasFlag" :src="flagSrc" :alt="item.original_language">
                     <span v-else>{{ item.original_language }}</span>
                 </li>
                 <li>{{ item.overview }}</li>
@@ -64,32 +65,42 @@ ul {
     list-style-type: none;
 }
 
-.card-container {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 16px;
-    transition: box-shadow 0.3s ease;
+.nation-img {
+    height: 30px;
+    width: 30px;
+}
+
+.my-card-container {
     position: relative;
 }
 
-.card-container:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.card-image {
+    position: relative;
+    overflow: hidden;
+    transition: opacity 0.3s;
+}
+
+.card-image img {
+    transition: transform 0.3s;
 }
 
 .card-info {
-    display: none;
     position: absolute;
-    top: 100%;
+    top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.95);
-    padding: 16px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    min-height: 100%;
+    background-color: black;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s;
 }
 
-.card-container:hover .card-info {
-    display: block;
+.my-card-container:hover .card-image {
+    opacity: 0;
+}
+
+.my-card-container:hover .card-info {
+    opacity: 1;
 }
 </style>

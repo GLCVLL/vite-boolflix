@@ -16,8 +16,15 @@ export default {
 <template>
     <section :id="title">
         <h2>{{ title }}</h2>
-        <ProductionCard v-for="production in store[collection]" :key="production.id" :item="production" />
+        <div class="col">
+            <ProductionCard class="p-2" v-for="production in store[collection]" :key="production.id" :item="production" />
+        </div>
     </section>
 </template>
 
-<script scoped lang="scss"></script>
+<style scoped lang="scss">
+.col {
+    display: flex;
+    flex-wrap: wrap;
+}
+</style>

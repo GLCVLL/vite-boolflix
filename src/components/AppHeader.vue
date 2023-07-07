@@ -14,6 +14,7 @@ export default {
 
 <template>
     <header>
+        <h1>BOOLFLIX</h1>
         <SearchForm @term-change="setTitleFilter" @form-submit="$emit('search-submit')" />
     </header>
 </template>
@@ -24,5 +25,11 @@ header {
     background-color: black;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+}
+
+h1 {
+    color: red;
+    margin: 0 10px;
 }
 </style>

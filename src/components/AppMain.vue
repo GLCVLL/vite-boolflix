@@ -7,8 +7,8 @@ export default {
 
 <template>
     <main>
-        <ProductionSection title="Movies" collections="movies" />
-        <ProductionSection title="TV Series" collections="series" />
+        <ProductionSection title="Movies" collection="movies" />
+        <ProductionSection title="TV Series" collection="series" />
     </main>
 </template>
 

@@ -15,7 +15,7 @@ export default {
 
 <template>
     <div class="container">
-        <form class="d-flex" @submit.prevent="$emit('form-submit')">
+        <form class="d-flex justify-content-end" @submit.prevent="$emit('form-submit')">
             <input @keyup="$emit('term-change', searchTerm)" type="text" :placeholder="placeholder || 'Cerca...'"
                 class="form-control mx-5" v-model.trim="searchTerm">
             <button class="btn btn-success">{{ submitLabel || 'Cerca..' }}</button>
@@ -23,4 +23,8 @@ export default {
     </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+input {
+    width: 300px;
+}
+</style>
